@@ -79,7 +79,7 @@ const calConfigured = calBase && !calBase.includes('BYTA_UT');
 
 if (calConfigured) {
   const u = new URL(calBase);
-  u.searchParams.set('mode', 'AGENDA');
+  u.searchParams.set('mode', 'WEEK');
   calEl.src = u.toString();
 }
 
