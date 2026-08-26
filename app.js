@@ -64,8 +64,8 @@ async function loadWeather() {
         <span class="wday-range">${Math.round(daily.temperature_2m_min[idx])}°–${Math.round(daily.temperature_2m_max[idx])}°</span>
       </div>`;
     }).join('');
-  } catch (e) {
-    document.getElementById('wcurrent').textContent = 'Fel: ' + e.message;
+  } catch {
+    document.getElementById('wcurrent').textContent = 'Kunde inte hämta väder';
   }
 }
 
