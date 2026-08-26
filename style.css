@@ -103,6 +103,7 @@ button { font-family: inherit; cursor: pointer; }
   border: none;
   display: block;
   min-height: 0;
+  filter: invert(1) hue-rotate(180deg);
 }
 
 /* ── Weather ───────────────────────────────── */
