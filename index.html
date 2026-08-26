@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Hem</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+
+    <header class="header">
+      <span id="clock" class="clock">00:00</span>
+      <span id="date" class="date"></span>
+    </header>
+
+    <div class="cal-weather-row">
+    <section class="calendar">
+      <div class="cal-header">
+        <span class="section-label">Kalender</span>
+        <div class="view-btns">
+          <button class="vbtn active" data-mode="AGENDA">Agenda</button>
+          <button class="vbtn" data-mode="DAY">Dag</button>
+          <button class="vbtn" data-mode="WEEK">Vecka</button>
+          <button class="vbtn" data-mode="MONTH">Månad</button>
+        </div>
+      </div>
+      <!--
+        Hämta din embed-URL från:
+        Google Kalender → Inställningar → [Kalendernamn] → Integrera kalender → "Inbädda den här koden"
+        Klistra in URL:en (utan &mode=...) i data-src nedan.
+      -->
+      <iframe
+        id="cal"
+        data-src="https://calendar.google.com/calendar/embed?src=0bo63v1jn7d8h4nc6vdlrjpvkk%40group.calendar.google.com&amp;ctz=Europe%2FStockholm"
+        src="about:blank"
+        class="cal-iframe"
+        frameborder="0">
+      </iframe>
+    </section>
+
+    <section class="weather">
+      <div id="wcurrent" class="wcurrent">Laddar väder…</div>
+      <div class="wday-label">Idag</div>
+      <div class="wslots" id="wtoday-slots"></div>
+      <div class="wday-label wsep">Veckan</div>
+      <div id="wweek" class="wweek"></div>
+    </section>
+
+    </div>
+
+    <section class="lists">
+      <div class="lists-toolbar">
+        <button id="new-list" class="new-list-btn">+ Ny lista</button>
+      </div>
+      <div id="lists-grid" class="lists-grid"></div>
+    </section>
+
+  </div>
+
+  <div id="dlg-overlay" class="dlg-overlay" hidden>
+    <div class="dlg">
+      <div id="dlg-title" class="dlg-title"></div>
+      <input id="dlg-input" type="text" class="dlg-input">
+      <div class="dlg-btns">
+        <button id="dlg-cancel" class="dlg-btn secondary">Avbryt</button>
+        <button id="dlg-ok" class="dlg-btn primary">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
