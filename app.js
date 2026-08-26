@@ -28,7 +28,7 @@ async function loadWeather() {
   const LAT = 59.30;
   const LON = 18.07;
   try {
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current_weather=true&hourly=temperature_2m,weathercode,precipitation_probability&daily=weathercode_dominant,temperature_2m_max,temperature_2m_min&forecast_days=7&timezone=auto`;
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current_weather=true&hourly=temperature_2m,weathercode,precipitation_probability&daily=weathercode,temperature_2m_max,temperature_2m_min&forecast_days=7&timezone=auto`;
     const { current_weather: cw, hourly, daily } = await (await fetch(url)).json();
 
     document.getElementById('wcurrent').textContent =
@@ -60,7 +60,7 @@ async function loadWeather() {
       const name = new Date(d + 'T12:00:00').toLocaleDateString('sv-SE', { weekday: 'short' });
       return `<div class="wday-row">
         <span class="wday-name">${name}</span>
-        <span class="wday-icon">${wmoIcon(daily.weathercode_dominant[idx])}</span>
+        <span class="wday-icon">${wmoIcon(daily.weathercode[idx])}</span>
         <span class="wday-range">${Math.round(daily.temperature_2m_min[idx])}°–${Math.round(daily.temperature_2m_max[idx])}°</span>
       </div>`;
     }).join('');
