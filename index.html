@@ -3,72 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Hem</title>
+  <title>Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@0.263.1/dist/umd/lucide.min.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="page">
+  <div class="dashboard">
 
-    <header class="header">
+    <header class="hdr">
       <span id="clock" class="clock">00:00</span>
+      <div class="hdr-sep"></div>
       <span id="date" class="date"></span>
     </header>
 
-    <div class="cal-weather-row">
-    <section class="calendar">
-      <div class="cal-header">
-        <span class="section-label">Kalender</span>
-        <div class="view-btns">
+    <div class="main-grid">
+
+      <div class="card cal-card">
+        <div class="cal-toolbar">
           <button class="vbtn" data-mode="AGENDA">Agenda</button>
-          <button class="vbtn" data-mode="DAY">Dag</button>
           <button class="vbtn active" data-mode="WEEK">Vecka</button>
+          <button class="vbtn" data-mode="DAY">Dag</button>
           <button class="vbtn" data-mode="MONTH">Månad</button>
         </div>
+        <iframe
+          id="cal"
+          data-src="https://calendar.google.com/calendar/embed?src=0bo63v1jn7d8h4nc6vdlrjpvkk%40group.calendar.google.com&amp;ctz=Europe%2FStockholm&amp;showTitle=0&amp;showPrint=0&amp;showCalendars=0&amp;showTz=0"
+          src="about:blank"
+          class="cal-iframe"
+          frameborder="0">
+        </iframe>
       </div>
-      <!--
-        Hämta din embed-URL från:
-        Google Kalender → Inställningar → [Kalendernamn] → Integrera kalender → "Inbädda den här koden"
-        Klistra in URL:en (utan &mode=...) i data-src nedan.
-      -->
-      <iframe
-        id="cal"
-        data-src="https://calendar.google.com/calendar/embed?src=0bo63v1jn7d8h4nc6vdlrjpvkk%40group.calendar.google.com&amp;ctz=Europe%2FStockholm"
-        src="about:blank"
-        class="cal-iframe"
-        frameborder="0">
-      </iframe>
-    </section>
 
-    <section class="weather">
-      <div id="wcurrent" class="wcurrent">Laddar väder…</div>
-      <div class="wday-label">Idag</div>
-      <div class="wslots" id="wtoday-slots"></div>
-      <div class="wday-label wsep">Veckan</div>
-      <div id="wweek" class="wweek"></div>
-    </section>
+      <div class="card weather-card">
+        <div class="w-top">
+          <div id="w-icon" class="w-icon"></div>
+          <div>
+            <div id="w-temp" class="w-temp">--°</div>
+            <div id="w-cond" class="w-cond">Johanneshov</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="w-metrics">
+          <div class="metric">
+            <i data-lucide="cloud-rain" class="micon"></i>
+            <span class="mval" id="m-pp">--%</span>
+            <span class="mlbl">Nederbörd</span>
+          </div>
+          <div class="metric">
+            <i data-lucide="droplets" class="micon"></i>
+            <span class="mval" id="m-mm">-- mm</span>
+            <span class="mlbl">Regnmängd</span>
+          </div>
+          <div class="metric">
+            <i data-lucide="wind" class="micon"></i>
+            <span class="mval" id="m-wind">-- m/s</span>
+            <span class="mlbl">Vind</span>
+          </div>
+          <div class="metric">
+            <i data-lucide="droplet" class="micon"></i>
+            <span class="mval" id="m-hum">--%</span>
+            <span class="mlbl">Luftfuktighet</span>
+          </div>
+        </div>
+
+        <div id="rain-warn" class="rain-warn" hidden>
+          <i data-lucide="umbrella" class="rwicon"></i>
+          <span>Ta med regnkläder idag</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="forecast" id="forecast"></div>
+      </div>
+
+      <div class="card lists-card">
+        <div class="lists-wrapper">
+          <div class="lists-inner" id="lists-inner"></div>
+          <div class="add-list-tile">
+            <input type="text" id="new-list-input" class="new-list-input" placeholder="Ny lista…">
+            <button id="new-list-btn" class="new-list-btn">Skapa lista</button>
+          </div>
+        </div>
+      </div>
 
     </div>
-
-    <section class="lists">
-      <div class="lists-toolbar">
-        <button id="new-list" class="new-list-btn">+ Ny lista</button>
-      </div>
-      <div id="lists-grid" class="lists-grid"></div>
-    </section>
-
   </div>
-
-  <div id="dlg-overlay" class="dlg-overlay" hidden>
-    <div class="dlg">
-      <div id="dlg-title" class="dlg-title"></div>
-      <input id="dlg-input" type="text" class="dlg-input">
-      <div class="dlg-btns">
-        <button id="dlg-cancel" class="dlg-btn secondary">Avbryt</button>
-        <button id="dlg-ok" class="dlg-btn primary">OK</button>
-      </div>
-    </div>
-  </div>
-
   <script src="app.js"></script>
 </body>
 </html>
